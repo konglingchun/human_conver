@@ -226,11 +226,11 @@ const char* unicodenames[128] = {
 void ascii_print_info(unsigned char itemIndex)
 {
 	if(itemIndex < 32){
-		printf("%i\t0x%02x\t%s\t%s\t%s\n", itemIndex, itemIndex, asciicodes[itemIndex], asciiescapes[itemIndex], unicodenames[itemIndex]);
+		printf("%i\t0x%02x\t%04o\t%s\t%s\t%s\n", itemIndex, itemIndex, itemIndex, asciicodes[itemIndex], asciiescapes[itemIndex], unicodenames[itemIndex]);
 	}else if(itemIndex < 127){
-		printf("%i\t0x%02x\t\'%c\'\t\t%s\n", itemIndex, itemIndex, itemIndex, unicodenames[itemIndex]);
+		printf("%i\t0x%02x\t%04o\t\'%c\'\t\t%s\n", itemIndex, itemIndex, itemIndex, itemIndex, unicodenames[itemIndex]);
 	}else{
-		printf("%i\t0x%02x\t%s\t\t%s\n", itemIndex, itemIndex, asciicodes[33], unicodenames[127]);
+		printf("%i\t0x%02x\t%04o\t%s\t\t%s\n", itemIndex, itemIndex, itemIndex, asciicodes[33], unicodenames[127]);
 	}
 }
 
@@ -238,7 +238,7 @@ void ascii_print(void)
 {
 	unsigned char itemIndex;
 
-	printf("%s\t%s\t%s\t%s\t%s\n", "dec", "hex", "codes", "escapes", "unicodenames");
+	printf("%s\t%s\t%s\t%s\t%s\t%s\n", "dec", "hex", "octal", "codes", "escapes", "unicodenames");
 	for(itemIndex=0; itemIndex<128; itemIndex++){
 		ascii_print_info(itemIndex);
 	}	
@@ -446,7 +446,7 @@ int main(int argc, char **argv)
 			decimal = decimal_get(argv[1], ibase);
 			printf("Human: %s\n", dec_to_humanstr(decimal));
 			if(decimal<128) {
-				printf("%s\t%s\t%s\t%s\t%s\n", "dec", "hex", "codes", "escapes", "unicodenames");
+				printf("%s\t%s\t%s\t%s\t%s\t%s\n", "dec", "hex", "octal", "codes", "escapes", "unicodenames");
 				ascii_print_info(decimal);
 			}
 			printf("\e[30;45m%s\e[0m\t\e[35m%s\n", "BASE:", "number");
